@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title></title>
+        <script>
+        const items = Array.from(document.querySelectorAll('[date-time]'))
+        //console.log(items);
+        const newItems = items.filter((item ) => item.innerHTML==='ECMA6');
+        console.log(newItems);
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li date-time="5:17"> ECMA6 Video</li>
+            <li date-time="8:22"> Node Video</li>
+            <li date-time="3:39"> Node Video</li>
+            <li date-time="4:29"> ECMA6 Video</li>
+        </ul>        
+    </body>
+</html>

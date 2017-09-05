@@ -2,10 +2,14 @@
     <head>
         <title></title>
         <script>
-        const items = Array.from(document.querySelectorAll('[date-time]'))
-        //console.log(items);
-        const newItems = items.filter((item ) => item.innerHTML==='ECMA6');
-        console.log(newItems);
+            window.onload = function(){
+                const totalSum = (((((Array.from(document.querySelectorAll('[date-time]')))
+                                .filter((item ) => item.innerText==='ECMA6 Video'))
+                                .map((item) => item.getAttribute('date-time')))
+                                .map((str) => str.split(':')[1]))
+                                .reduce((sum,value) => Number(sum) + Number(value)));
+                console.log(totalSum);
+            };
         </script>
     </head>
     <body>

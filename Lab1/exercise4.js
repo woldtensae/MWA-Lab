@@ -1,8 +1,8 @@
 
 String.prototype.filter = function(words){
-    var myStr = this;
-    for(let word in words){
-        myStr.replace(word, "*****");
+    var myStr = this.toString();
+    for(let word of words){
+       myStr = myStr.replace(word, "*****");
     }
     return myStr; 
 }

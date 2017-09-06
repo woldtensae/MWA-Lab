@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>BMI Calculator</title>
+        <script>
+            window.onload = function(){
+            class BMICalculator{
+                
+                Constructor(num1, num2){
+                    this.num1 = num1;
+                    this.num2 = num2;
+                }
+
+                getNum1(){
+                    return this.num1;
+                }
+                radioButtonChecked(){
+                    let value = '';
+                    document.getElementsById("metric")
+                    .radioButtonChecked ? value = 'metric': value='engilish';
+                    return value;
+                }
+                isEmptyNotValid(){
+                    return this.num1 == '' || this.num1 == '' ? true : false;
+                }
+                isNaN(){
+                    return isNaN(this.num1) || isNaN(this.num2) ? true : false;
+                }
+            }
+            document.getElementById("calculate").addEventListener("click",function(){
+                let bmiCalculator = new BMICalculator(Number(document.getElementById('ha').value), Number(document.getElementById('we').value));
+                alert (Number(document.getElementById('ha').value));
+                bmiCalculator.isEmptyNotValid() ? alert('wrong input'):alert('correct');
+            })
+        }
+        </script>
+    </head>
+    <body>
+        <h3>BMI Calculator</h3>
+        <input type="radio" name="unit" value="metric"> Metric </label>
+        <input type="radio" name="unit" value="engilish"> Engilish </label>
+        <input type="number" name="hight" id="ha" placeholder="Enter your hight">
+        <input type="number" name="weight" id="we" placeholder="Enter your weight">
+        <button id="calculate">calculate</button>
+    </body>
+</html>

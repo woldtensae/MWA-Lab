@@ -2,35 +2,60 @@
     <head>
         <title>BMI Calculator</title>
         <script>
-            window.onload = function(){
-            class BMICalculator{
-                
-                Constructor(num1, num2){
-                    this.num1 = num1;
-                    this.num2 = num2;
-                }
 
-                getNum1(){
-                    return this.num1;
+
+
+            window.onload = function(){
+
+                document.getElementById("calculate").addEventListener("click",function(){
+                let bmiCalculator = new BMICalculator(Number(document.getElementById('ha').value),
+                 Number(document.getElementById('we').value), document.querySelector('input[name = "unit"]:checked'));
+                    if(bmiCalculator.isEmptyNotValid() || bmiCalculator.isTypeChoosen()){
+                        document.getElementById("errorMessage").innerHTML = "Please fill the inputs ";
+                    }else{
+                        bmiCalculator.calculate();
+                        document.getElementById("hight").innerHTML = bmiCalculator.outputHight;
+                        document.getElementById("weight").innerHTML = bmiCalculator.outputWeight;
+                        document.getElementById("errorMessage").innerHTML = "";
+                    }
+                })
+
+                class BMICalculator{                
+                constructor(hight, weight, method){
+                    this.hight = hight;
+                    this.weight = weight;
+                    this.outputHight = 0;
+                    this.outputWeight =0;
+                    if(method!=null)
+                    this.method = method.value;
                 }
+           
                 radioButtonChecked(){
                     let value = '';
-                    document.getElementsById("metric")
-                    .radioButtonChecked ? value = 'metric': value='engilish';
+                    
                     return value;
                 }
                 isEmptyNotValid(){
-                    return this.num1 == '' || this.num1 == '' ? true : false;
+                    return this.hight == 0 || this.weight == 0 ? true : false;
                 }
-                isNaN(){
-                    return isNaN(this.num1) || isNaN(this.num2) ? true : false;
+                
+                isTypeChoosen(){
+                    return this.type == null ? true : false;
                 }
+
+                calculate(){
+                   if(this.method === "engilish"){
+                      this.outputHight = this.hight * 3.2808;
+                      this.outputWeight = this.weight / 2.2;
+                   } 
+                   else{
+                      this.outputHight = this.hight / 3.2808 ;
+                      this.outputWeight = this.weight * 2.2;
+                   }
+                }
+
             }
-            document.getElementById("calculate").addEventListener("click",function(){
-                let bmiCalculator = new BMICalculator(Number(document.getElementById('ha').value), Number(document.getElementById('we').value));
-                alert (Number(document.getElementById('ha').value));
-                bmiCalculator.isEmptyNotValid() ? alert('wrong input'):alert('correct');
-            })
+           
         }
         </script>
     </head>
@@ -41,5 +66,8 @@
         <input type="number" name="hight" id="ha" placeholder="Enter your hight">
         <input type="number" name="weight" id="we" placeholder="Enter your weight">
         <button id="calculate">calculate</button>
+        <div id="errorMessage"></div>
+        <div id="hight"></div>
+        <div id="weight"></div>
     </body>
 </html>

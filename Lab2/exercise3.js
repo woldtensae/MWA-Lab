@@ -1,5 +1,6 @@
+
 function slow(callback){
-    for(let i=0;i<=5e8;i++){}
+    process.nextTick(() => {for(let i=0;i<=5e8;i++){}})
     if(Math.random()> 0.5){
         return callback("Error", null);
     }
@@ -7,7 +8,7 @@ function slow(callback){
 }
 
 function exec(fn){
-    
+     
     return {
         done: function(f1){
             f1(data);
